@@ -27,18 +27,20 @@ class CustomerMasterPageDhanuka:
       #  return self.get_user_logged_in().text
 
     def get_master_page(self):
-        return self.driver.find_element(*CustomerMasterPageDhanuka.main_master)
+        self.driver.find_element(*CustomerMasterPageDhanuka.main_master).click()
 
     def user_customer_in_text(self):
         webdriver_wait(driver=self.driver, element_tuple=self.main_master, timeout=15)
-        return self.get_master_page().click
+        self.get_master_page()
 
     def get_customer_master_page(self):
-        return self.driver.find_element(*CustomerMasterPageDhanuka.customer_master)
+        self.driver.find_element(*CustomerMasterPageDhanuka.customer_master).click()
 
     def user_customer_master_in_text(self):
         webdriver_wait(driver=self.driver, element_tuple=self.customer_master, timeout=15)
-        return self.get_customer_master_page().click
+        self.get_customer_master_page()
+
+
 
 
 
