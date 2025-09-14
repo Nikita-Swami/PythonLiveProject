@@ -15,13 +15,30 @@ class CustomerMasterPageDhanuka:
     def __init__(self, driver):
         self.driver = driver
 
-    user_logged_in = (By.XPATH, "//div[@class='main-container-inner']")
+    #user_logged_in = (By.XPATH, "//div[@class='main-container-inner']")
     main_master = (By.XPATH, "//a[@id='tooltip3']")
-    customer = (By.XPATH, "//div/div/div/div/ul/li/a/span[text()='Customer']")
+    customer_master = (By.XPATH, "//div/div/div/div/ul/li/a/span[text()='Customer']")
 
-    def get_user_logged_in(self):
-        return self.driver.find_element(*DashboardPageDhanuka.user_logged_in)
+    #def get_user_logged_in(self):
+     #   return self.driver.find_element(*DashboardPageDhanuka.user_logged_in)
+
+    #def user_logged_in_text(self):
+    #    webdriver_wait(driver=self.driver, element_tuple=self.user_logged_in, timeout=15)
+      #  return self.get_user_logged_in().text
 
     def get_master_page(self):
         return self.driver.find_element(*CustomerMasterPageDhanuka.main_master)
+
+    def user_customer_in_text(self):
+        webdriver_wait(driver=self.driver, element_tuple=self.main_master, timeout=15)
+        return self.get_master_page().click
+
+    def get_customer_master_page(self):
+        return self.driver.find_element(*CustomerMasterPageDhanuka.customer_master)
+
+    def user_customer_master_in_text(self):
+        webdriver_wait(driver=self.driver, element_tuple=self.customer_master, timeout=15)
+        return self.get_customer_master_page().click
+
+
 
