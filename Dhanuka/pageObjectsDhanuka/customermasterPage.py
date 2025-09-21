@@ -1,5 +1,5 @@
 # Customer Master Page Class
-
+from selenium.common import InvalidSelectorException
 # Page Locators
 # Page Actions
 
@@ -19,6 +19,16 @@ class CustomerMasterPageDhanuka:
     main_master = (By.XPATH, "//a[@id='tooltip3']")
     customer_master = (By.XPATH, "//div/div/div/div/ul/li/a/span[text()='Customer']")
     customers = (By.XPATH, "//a[@href='/CustomerMaster/GetCustomerMaster/6018']")
+    #add customer form
+    add_customer_button = (By.XPATH,"//button[@id='btnAdd']")
+    #all forms fields
+    customer_code = (By.XPATH,"//input[@name='SLCODE']")
+    customer_name = (By.XPATH,"//input[@id='NAME']")
+    division_id = (By.XPATH, "//input[@id='DIVISIONROWID']")
+    customer_dd = (By.XPATH, "//div[@id='select2-drop-mask']")
+    customer_type_dd = (By.XPATH,"//div[@id='s2id_SLTYPEID']//span[contains(text(), 'Retailer')]")
+    parent_dd = (By.XPATH, "//div[@id='s2id_PID']")
+
 
     #def get_user_logged_in(self):
      #   return self.driver.find_element(*DashboardPageDhanuka.user_logged_in)
@@ -54,6 +64,33 @@ class CustomerMasterPageDhanuka:
         self.get_customers()
 
     #Add new Customer
+    def get_add_retailer(self):
+        webdriver_wait(driver=self.driver, element_tuple=self.add_customer_button, timeout=15)
+        self.driver.find_element(*CustomerMasterPageDhanuka.add_customer_button).click()
+
+
+    def get_add_retailer_details(self,cust_code,cust_name,div_id):
+        try:
+            webdriver_wait(driver=self.driver, element_tuple=self.customer_code, timeout=15)
+            self.driver.find_element(*CustomerMasterPageDhanuka.customer_code).send_keys(cust_code)
+
+            webdriver_wait(driver=self.driver,element_tuple=self.customer_name, timeout=15)
+            self.driver.find_element(*CustomerMasterPageDhanuka.customer_name).send_keys(cust_name)
+
+            webdriver_wait(driver=self.driver, element_tuple=self.division_id, timeout=15)
+            self.driver.find_element(*CustomerMasterPageDhanuka.division_id).send_keys(div_id)
+
+            webdriver_wait(driver=self.driver, element_tuple=self.customer_dd, timeout=70)
+            self.driver.find_element(*CustomerMasterPageDhanuka.customer_dd).click()
+
+            webdriver_wait(driver=self.driver, element_tuple=self.customer_type_dd, timeout=75)
+            self.driver.find_element(*CustomerMasterPageDhanuka.customer_type_dd).click()
+
+        except InvalidSelectorException as e:
+            print(e)
+
+
+
 
 
 
