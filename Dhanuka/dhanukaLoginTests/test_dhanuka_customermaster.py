@@ -35,8 +35,12 @@ def test_dhanuka_customer(setup):
     #assert "FDFR Current Week" in dashboardPage.user_logged_in_text()
     main_masterPage =CustomerMasterPageDhanuka(driver=setup)
     main_masterPage.get_master_page()
-    time.sleep(15)
+    time.sleep(10)
 
     customer_masterPage = CustomerMasterPageDhanuka(driver=setup)
     customer_masterPage.get_customer_master_page()
-    time.sleep(15)
+    time.sleep(10)
+
+    customers_Page = CustomerMasterPageDhanuka(driver=setup)
+    customers_Page.get_customers()
+    time.sleep(10)
